@@ -1,5 +1,6 @@
 package org.keycloak.protocol.cas.endpoints;
 
+import java.net.URI;
 import org.jboss.logging.Logger;
 import org.keycloak.events.Details;
 import org.keycloak.events.Errors;
@@ -11,6 +12,8 @@ import org.keycloak.protocol.AuthorizationEndpointBase;
 import org.keycloak.protocol.cas.CASLoginProtocol;
 import org.keycloak.protocol.oidc.utils.RedirectUtils;
 import org.keycloak.services.ErrorPageException;
+import org.keycloak.services.managers.AppAuthManager;
+import org.keycloak.services.managers.AuthenticationManager;
 import org.keycloak.services.messages.Messages;
 import org.keycloak.services.util.CacheControlUtil;
 import org.keycloak.sessions.AuthenticationSessionModel;
@@ -36,7 +39,14 @@ public class AuthorizationEndpoint extends AuthorizationEndpointBase {
         MultivaluedMap<String, String> params = session.getContext().getUri().getQueryParameters();
         String service = params.getFirst(CASLoginProtocol.SERVICE_PARAM);
         boolean renew = params.containsKey(CASLoginProtocol.RENEW_PARAM);
-        boolean gateway = params.containsKey(CASLoginProtocol.GATEWAY_PARAM);
+        boolean gateway = params.containsKey(CASLoginProtocol.GATEWAY_PARAM) && Boolean.parseBoolean(params.getFirst(CASLoginProtocol.GATEWAY_PARAM));
+
+        if (gateway) {
+            AuthenticationManager.AuthResult result = new AppAuthManager().authenticateIdentityCookie(session, session.getContext().getRealm());
+            if (result == null || result.getUser() == null) {
+                return Response.temporaryRedirect(URI.create(service)).build();
+            }
+        }
 
         checkSsl();
         checkRealm();
