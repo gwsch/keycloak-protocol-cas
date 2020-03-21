@@ -40,6 +40,10 @@ import java.util.stream.Stream;
 public class SamlResponseHelper {
     private final static DatatypeFactory factory;
 
+    private static final String AUTH_METHOD_PASSWORD = "urn:oasis:names:tc:SAML:1.0:am:password";
+    private static final String FORMAT_EMAIL_ADDRESS = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress";
+    private static final String FORMAT_UNSPECIFIED = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified";
+    
     static {
         try {
             factory = DatatypeFactory.newInstance();
@@ -74,7 +78,7 @@ public class SamlResponseHelper {
                             conditions.setNotOnOrAfter(factory.newXMLGregorianCalendar(GregorianCalendar.from(nowZoned.plusMinutes(5))));
                         }));
                         assertion.add(applyTo(new SAML11AuthenticationStatementType(
-                                URI.create(SAML11Constants.AUTH_METHOD_PASSWORD),
+                        		URI.create(AUTH_METHOD_PASSWORD),
                                 now
                         ), stmt -> stmt.setSubject(toSubject(username))));
                         assertion.addAllStatements(toAttributes(username, attributes));
@@ -140,9 +144,9 @@ public class SamlResponseHelper {
     }
 
     private static URI nameIdFormat(String username) {
-        return URI.create(Validation.isEmailValid(username) ?
-                SAML11Constants.FORMAT_EMAIL_ADDRESS :
-                SAML11Constants.FORMAT_UNSPECIFIED
+    	return URI.create(Validation.isEmailValid(username) ?
+                FORMAT_EMAIL_ADDRESS :
+                FORMAT_UNSPECIFIED
         );
     }
 
