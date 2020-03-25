@@ -17,11 +17,11 @@
 
 package org.keycloak.protocol.cas.mappers;
 
-import org.keycloak.models.ProtocolMapperModel;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.keycloak.models.ProtocolMapperModel;
 
 /**
  * Base class for mapping of user role mappings to an ID and Access Token claim.

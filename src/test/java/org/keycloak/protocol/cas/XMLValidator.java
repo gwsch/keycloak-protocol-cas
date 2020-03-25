@@ -1,17 +1,19 @@
 package org.keycloak.protocol.cas;
 
-import com.sun.xml.bind.v2.util.FatalAdapter;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import java.io.StringReader;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.StringReader;
+
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import com.sun.xml.bind.v2.util.FatalAdapter;
 
 public abstract class XMLValidator {
     private XMLValidator(){}

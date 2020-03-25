@@ -1,16 +1,12 @@
 package org.keycloak.protocol.cas.endpoints;
 
-import org.keycloak.dom.saml.v1.protocol.SAML11ResponseType;
-import org.keycloak.events.EventBuilder;
-import org.keycloak.events.EventType;
-import org.keycloak.models.RealmModel;
-import org.keycloak.models.UserModel;
-import org.keycloak.protocol.cas.CASLoginProtocol;
-import org.keycloak.protocol.cas.representations.CASErrorCode;
-import org.keycloak.protocol.cas.representations.SamlResponseHelper;
-import org.keycloak.protocol.cas.utils.CASValidationException;
-import org.keycloak.services.Urls;
-import org.xml.sax.InputSource;
+import static org.keycloak.protocol.cas.CASLoginProtocol.TARGET_PARAM;
+
+import java.io.StringReader;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -22,10 +18,18 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.io.StringReader;
-import java.util.*;
 
-import static org.keycloak.protocol.cas.CASLoginProtocol.TARGET_PARAM;
+import org.keycloak.dom.saml.v1.protocol.SAML11ResponseType;
+import org.keycloak.events.EventBuilder;
+import org.keycloak.events.EventType;
+import org.keycloak.models.RealmModel;
+import org.keycloak.models.UserModel;
+import org.keycloak.protocol.cas.CASLoginProtocol;
+import org.keycloak.protocol.cas.representations.CASErrorCode;
+import org.keycloak.protocol.cas.representations.SamlResponseHelper;
+import org.keycloak.protocol.cas.utils.CASValidationException;
+import org.keycloak.services.Urls;
+import org.xml.sax.InputSource;
 
 public class SamlValidateEndpoint extends AbstractValidateEndpoint {
     public SamlValidateEndpoint(RealmModel realm, EventBuilder event) {

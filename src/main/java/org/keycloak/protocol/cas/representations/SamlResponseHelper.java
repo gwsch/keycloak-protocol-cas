@@ -1,17 +1,18 @@
 package org.keycloak.protocol.cas.representations;
 
-import org.keycloak.dom.saml.v1.assertion.*;
-import org.keycloak.dom.saml.v1.protocol.SAML11ResponseType;
-import org.keycloak.dom.saml.v1.protocol.SAML11StatusCodeType;
-import org.keycloak.dom.saml.v1.protocol.SAML11StatusType;
-import org.keycloak.protocol.cas.utils.CASValidationException;
-import org.keycloak.saml.common.exceptions.ProcessingException;
-import org.keycloak.saml.processing.core.saml.v1.SAML11Constants;
-import org.keycloak.saml.processing.core.saml.v1.writers.SAML11ResponseWriter;
-import org.keycloak.services.validation.Validation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import java.io.StringWriter;
+import java.net.URI;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -28,14 +29,25 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
-import java.net.URI;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import org.keycloak.dom.saml.v1.assertion.SAML11AssertionType;
+import org.keycloak.dom.saml.v1.assertion.SAML11AttributeStatementType;
+import org.keycloak.dom.saml.v1.assertion.SAML11AttributeType;
+import org.keycloak.dom.saml.v1.assertion.SAML11AuthenticationStatementType;
+import org.keycloak.dom.saml.v1.assertion.SAML11ConditionsType;
+import org.keycloak.dom.saml.v1.assertion.SAML11NameIdentifierType;
+import org.keycloak.dom.saml.v1.assertion.SAML11StatementAbstractType;
+import org.keycloak.dom.saml.v1.assertion.SAML11SubjectType;
+import org.keycloak.dom.saml.v1.protocol.SAML11ResponseType;
+import org.keycloak.dom.saml.v1.protocol.SAML11StatusCodeType;
+import org.keycloak.dom.saml.v1.protocol.SAML11StatusType;
+import org.keycloak.protocol.cas.utils.CASValidationException;
+import org.keycloak.saml.common.exceptions.ProcessingException;
+import org.keycloak.saml.processing.core.saml.v1.writers.SAML11ResponseWriter;
+import org.keycloak.services.validation.Validation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class SamlResponseHelper {
     private final static DatatypeFactory factory;

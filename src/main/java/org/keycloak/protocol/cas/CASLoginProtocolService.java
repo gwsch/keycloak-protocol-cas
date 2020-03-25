@@ -1,15 +1,22 @@
 package org.keycloak.protocol.cas;
 
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
-import org.keycloak.protocol.cas.endpoints.*;
+import org.keycloak.protocol.cas.endpoints.AuthorizationEndpoint;
+import org.keycloak.protocol.cas.endpoints.LogoutEndpoint;
+import org.keycloak.protocol.cas.endpoints.SamlValidateEndpoint;
+import org.keycloak.protocol.cas.endpoints.ServiceValidateEndpoint;
+import org.keycloak.protocol.cas.endpoints.ValidateEndpoint;
 import org.keycloak.services.resources.RealmsResource;
-
-import javax.ws.rs.Path;
-import javax.ws.rs.core.*;
 
 public class CASLoginProtocolService {
     private RealmModel realm;

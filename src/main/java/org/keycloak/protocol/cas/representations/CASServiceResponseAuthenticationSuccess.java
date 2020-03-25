@@ -1,11 +1,15 @@
 package org.keycloak.protocol.cas.representations;
 
-import org.keycloak.protocol.cas.utils.AttributesMapAdapter;
-
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.keycloak.protocol.cas.utils.AttributesMapAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CASServiceResponseAuthenticationSuccess {

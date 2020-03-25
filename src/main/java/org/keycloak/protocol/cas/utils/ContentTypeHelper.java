@@ -1,10 +1,14 @@
 package org.keycloak.protocol.cas.utils;
 
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Variant;
+
 import org.jboss.resteasy.spi.HttpRequest;
 import org.keycloak.protocol.cas.CASLoginProtocol;
-
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.core.*;
 
 public class ContentTypeHelper {
     private final HttpRequest request;

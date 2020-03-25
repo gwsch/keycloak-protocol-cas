@@ -1,5 +1,7 @@
 package org.keycloak.protocol.cas.mappers;
 
+import java.util.Map;
+
 import org.keycloak.Config;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
@@ -7,8 +9,6 @@ import org.keycloak.models.ProtocolMapperModel;
 import org.keycloak.protocol.ProtocolMapper;
 import org.keycloak.protocol.cas.CASLoginProtocol;
 import org.keycloak.protocol.oidc.mappers.OIDCAttributeMapperHelper;
-
-import java.util.Map;
 
 public abstract class AbstractCASProtocolMapper implements ProtocolMapper, CASAttributeMapper {
     public static final String TOKEN_MAPPER_CATEGORY = "Token mapper";

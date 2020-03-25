@@ -1,5 +1,10 @@
 package org.keycloak.protocol.cas;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.jboss.logging.Logger;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.models.ClientModel;
@@ -12,11 +17,6 @@ import org.keycloak.protocol.cas.mappers.FullNameMapper;
 import org.keycloak.protocol.cas.mappers.UserAttributeMapper;
 import org.keycloak.protocol.cas.mappers.UserPropertyMapper;
 import org.keycloak.representations.idm.ClientRepresentation;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class CASLoginProtocolFactory extends AbstractLoginProtocolFactory {
     private static final Logger logger = Logger.getLogger(CASLoginProtocolFactory.class);

@@ -1,16 +1,16 @@
 package org.keycloak.protocol.cas.endpoints;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.events.EventType;
 import org.keycloak.models.RealmModel;
 import org.keycloak.protocol.cas.CASLoginProtocol;
 import org.keycloak.protocol.cas.utils.CASValidationException;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
 
 public class ValidateEndpoint extends AbstractValidateEndpoint {
 

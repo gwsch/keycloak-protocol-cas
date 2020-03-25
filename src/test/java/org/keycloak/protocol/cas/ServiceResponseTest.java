@@ -1,6 +1,15 @@
 package org.keycloak.protocol.cas;
 
-import com.jayway.jsonpath.JsonPath;
+import static org.junit.Assert.assertEquals;
+import static org.keycloak.protocol.cas.XMLValidator.parseAndValidate;
+import static org.keycloak.protocol.cas.XMLValidator.schemaFromClassPath;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import org.keycloak.protocol.cas.representations.CASErrorCode;
 import org.keycloak.protocol.cas.representations.CASServiceResponse;
@@ -11,11 +20,7 @@ import org.w3c.dom.Node;
 import org.xmlunit.xpath.JAXPXPathEngine;
 import org.xmlunit.xpath.XPathEngine;
 
-import java.util.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.keycloak.protocol.cas.XMLValidator.parseAndValidate;
-import static org.keycloak.protocol.cas.XMLValidator.schemaFromClassPath;
+import com.jayway.jsonpath.JsonPath;
 
 public class ServiceResponseTest {
     private final XPathEngine xpath = new JAXPXPathEngine();

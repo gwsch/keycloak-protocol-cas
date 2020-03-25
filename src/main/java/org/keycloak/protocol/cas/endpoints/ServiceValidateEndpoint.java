@@ -1,20 +1,19 @@
 package org.keycloak.protocol.cas.endpoints;
 
+import java.util.Map;
+
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
+
 import org.keycloak.events.EventBuilder;
-import org.keycloak.models.*;
-import org.keycloak.protocol.ProtocolMapper;
-import org.keycloak.protocol.cas.mappers.CASAttributeMapper;
+import org.keycloak.models.RealmModel;
+import org.keycloak.models.UserSessionModel;
 import org.keycloak.protocol.cas.representations.CASServiceResponse;
 import org.keycloak.protocol.cas.utils.CASValidationException;
 import org.keycloak.protocol.cas.utils.ContentTypeHelper;
 import org.keycloak.protocol.cas.utils.ServiceResponseHelper;
-import org.keycloak.services.managers.ClientSessionCode;
-import org.keycloak.services.util.DefaultClientSessionContext;
-
-import javax.ws.rs.core.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class ServiceValidateEndpoint extends ValidateEndpoint {
     @Context

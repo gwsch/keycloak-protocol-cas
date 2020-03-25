@@ -1,11 +1,11 @@
 package org.keycloak.protocol.cas.mappers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.keycloak.models.ProtocolMapperModel;
 import org.keycloak.protocol.cas.CASLoginProtocol;
 import org.keycloak.protocol.oidc.mappers.OIDCAttributeMapperHelper;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CASAttributeMapperHelper {
     public static ProtocolMapperModel createClaimMapper(String name,

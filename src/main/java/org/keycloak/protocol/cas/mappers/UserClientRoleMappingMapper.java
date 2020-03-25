@@ -1,14 +1,21 @@
 package org.keycloak.protocol.cas.mappers;
 
-import org.keycloak.models.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.keycloak.models.ClientSessionContext;
+import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.ProtocolMapperModel;
+import org.keycloak.models.UserSessionModel;
 import org.keycloak.protocol.ProtocolMapperUtils;
 import org.keycloak.protocol.oidc.mappers.OIDCAttributeMapperHelper;
 import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.representations.AccessToken;
 import org.keycloak.utils.RoleResolveUtil;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class UserClientRoleMappingMapper extends AbstractUserRoleMappingMapper {
 

@@ -1,15 +1,16 @@
 package org.keycloak.protocol.cas.utils;
 
-import org.keycloak.protocol.cas.representations.CASErrorCode;
-import org.keycloak.protocol.cas.representations.CASServiceResponse;
-import org.keycloak.protocol.cas.representations.CASServiceResponseAuthenticationFailure;
-import org.keycloak.protocol.cas.representations.CASServiceResponseAuthenticationSuccess;
+import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
-import java.util.Map;
+
+import org.keycloak.protocol.cas.representations.CASErrorCode;
+import org.keycloak.protocol.cas.representations.CASServiceResponse;
+import org.keycloak.protocol.cas.representations.CASServiceResponseAuthenticationFailure;
+import org.keycloak.protocol.cas.representations.CASServiceResponseAuthenticationSuccess;
 
 public final class ServiceResponseHelper {
     private ServiceResponseHelper() {
